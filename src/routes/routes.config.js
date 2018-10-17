@@ -26,7 +26,26 @@ const getRouters = app => {
     }, {
       path: '/',
       name: '主页',
-      component: dynamicWrapper(app, () => import('./home'), 'home')
+      component: dynamicWrapper(app, () => import('./home'), 'home'),
+      childrens: [
+        {
+          path:'/dashboard',
+          name: '仪表盘',
+          component: dynamicWrapper(app, () => import('../components/dashboard'))
+        },
+        {
+          path: '/user',
+          name: '用户列表',
+          component: dynamicWrapper(app, ()=> import('../components/user')),
+          childrens: [
+            {
+              name: '新增用户',
+              path: '/add',
+              component: dynamicWrapper(app, ()=> import('../components/user'))
+            }
+          ]
+        }
+      ]
     }
   ]
   return routers
