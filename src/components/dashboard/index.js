@@ -1,8 +1,8 @@
 const Dashboard = () => {
   return (
-    <dvi>
+    <div>
       仪表盘
-    </dvi>
+    </div>
   )   
 }
 export default Dashboard

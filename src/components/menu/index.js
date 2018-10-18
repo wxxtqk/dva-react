@@ -1,10 +1,11 @@
 import React from 'react'
 import { Menu, Icon } from 'antd'
+import { Link } from 'dva/router'
 const SubMenu = Menu.SubMenu
 const Menus = (props) => {
   const {routers} = props
   return (
-    <div style={{ width: 256 }}>
+    <div>
       <Menu
         defaultSelectedKeys={[routers[0].path]}
         mode="inline"
@@ -14,8 +15,10 @@ const Menus = (props) => {
           if (!item.childrens) {
             return (
               <Menu.Item key={item.path}>
-                <Icon type="pie-chart" />
-                <span>{item.name}</span>
+                <Link to={item.path}>
+                  <Icon type="pie-chart" />
+                  <span>{item.name}</span>
+                </Link>
               </Menu.Item>
             )
           } else {
@@ -24,7 +27,9 @@ const Menus = (props) => {
                 {item.childrens.map(childs => {
                   return (
                     <Menu.Item key={childs.path}>
-                      <span>{item.name}</span>
+                      <Link to={`${item.path}${childs.path}`}>
+                        <span>{item.name}</span>
+                      </Link>
                     </Menu.Item>
                   )
                 })}
